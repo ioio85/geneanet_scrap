@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import pandas as pd
 from urllib.request import Request, urlopen
 import re
