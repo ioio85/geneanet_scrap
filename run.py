@@ -253,8 +253,9 @@ class Person:
         # self.fiche.append(f"0 @I{self.sosa}@  NOTE")
         # self.fiche.append(f"1 CONT Present dans l arbre : {self.url}")
         # self.fiche.append(f"1 CONT Position dans l arbre : {self.urlPerson}")
-        self.fiche.append(f"1 NOTE Present dans l arbre : {self.url}")
-        self.fiche.append(f"1 NOTE Position dans l arbre : {self.urlPerson}")
+        # self.fiche.append(f"1 NOTE Present dans l arbre : {self.url}")
+        # self.fiche.append(f"1 NOTE Position dans l arbre : {self.urlPerson}")
+        self.fiche.append(f"1 SOUR Importé de l'arbre : {self.urlPerson}")
         self.json.update({'urlTree': self.url, 'urlPerson': self.urlPerson})
     def add_information_person(self) -> None:
         self.fiche.append(f"0 @I{self.sosa}@ INDI")
@@ -316,7 +317,8 @@ class Person:
                 , f"1 FAMS @F{self.numberFam}@"]
 
             if get_sexe_by_sosa(self.sosa) == 'F':
-                unionNote.append("2 TYPE married")
+                print("married")
+                # unionNote.append("2 TYPE married")
             else:
                 unionNote.append(f"0 @F{self.numberFam}@ FAM")
                 try:
@@ -349,7 +351,7 @@ class Person:
             else:
                 self.fiche.extend(unionNote)
         else:
-            unionNote = ["1 FAMC @F2@"]
+            unionNote = ["1 FAMC @F1@"]
             self.fiche.extend(unionNote)
 
 
@@ -363,7 +365,7 @@ def delete_file_if_exist(nomGed: str):
 def run_export_tree():
     delete_file_if_exist(nomGed=f"{str(pd.to_datetime('today'))[:10]}__{nomGed}")
     with open(f"arbres/{str(pd.to_datetime('today'))[:10]}__{nomGed}.ged", 'a', encoding='utf-8') as f:
-        f.write('\n' + "0 HEAD")
+        f.write("0 HEAD")
         f.write('\n' + "1 SOUR scrap_gen")
         f.write('\n' + "2 NAME scrap_gen")
         f.write('\n' + "2 VERS 1.0")
