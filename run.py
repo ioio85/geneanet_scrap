@@ -375,10 +375,11 @@ def run_export_tree():
             for row in Person(sosa=person, url=url).get_fiche():
                 # print(row)
                 f.write('\n' + row)
+        f.write('\n' + '0 TRLR')
         print(f"export file {nomGed} : end -> {len(df['Sosa'].unique())} personnes")
 
 
-url = "https://gw.geneanet.org/124559?lang=fr&iz=2&m=A&p=anne&n=jolivel&oc=3&sosab=10&color=&t=Z&birth=on&birth_place=on&marr=on&marr_date=on&marr_place=on&death=on&death_place=on&death_age=on&occu=on&gen=on&repeat=on&v=6"
+url = "https://gw.geneanet.org/fdegeorge1965?lang=fr&pz=mathis+baptiste+marcel&nz=degeorge&ocz=0&m=A&p=jean&n=chevaleyre&oc=7&sosab=10&color=&t=Z&birth=on&birth_place=on&marr=on&marr_date=on&marr_place=on&child=on&death=on&death_place=on&death_age=on&occu=on&gen=on&repeat=on&v=7"
 nomGed = Url_Data(url).name_tree
 Url_Data(url).urlExport
 # df = get_dataframe_arbre_by_url(url=url)
